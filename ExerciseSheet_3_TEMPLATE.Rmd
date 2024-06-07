@@ -132,10 +132,16 @@ c)  Calculate the total number of babies born in Munich in 2022
     total_2023 <- sum(data_2023$Anzahl, na.rm = TRUE)
     ```
 
-    2023 had the bigger baby-boom.
+    2022 had the bigger baby-boom.
     
 d)  Add a new column `year` to both datasets which holds the correct
     year for each.
+    
+    ```{r}
+    
+    
+    
+    
 
 e)  Combine both datasets into one using `bind_rows()`.
 
