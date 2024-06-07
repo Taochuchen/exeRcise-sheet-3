@@ -99,10 +99,35 @@ b)  Load the data for both years into R. Check the type of the count
     not numeric? Fix the problem in an appropriate manner, it is OK if
     some of the counts are inaccurate because of this. Explain your
     solution and the repercussions.
+    
+    ```{r}
+    library(readr)
+    library(dplyr)
+    library(knitr)
+    data_2022 <- read_csv("data/open_data_portal_2022.csv")
+    data_2023 <- read_csv("data/vornamen-muenchen-2023.csv")
+    str(data_2022)
+    str(data_2023)
+    data_2022 <- data_2022 %>%
+      mutate(Anzahl = as.numeric(Anzahl))
+    data_2023 <- data_2023 %>%
+      mutate(Anzahl = as.numeric(Anzahl))
+    ```
+   
+    Solution:Use the as.numeric function to convert the Anzahl column to 
+             numeric. Any non-numeric values will be turned into NA. Ignore NA 
+             values during calculations to ensure accurate numeric data 
+             processing.
+    Repercussions: Non-numeric values will become NA, and these entries will be 
+                   ignored, leading to slight inaccuracies in the total counts.
+                   Converting all counts to numeric makes further analysis 
+                   easier and avoids complications from mixed data types.
+
+
 
 c)  Calculate the total number of babies born in Munich in 2022
     and 2023. Which year had the bigger baby-boom?
-
+    
 d)  Add a new column `year` to both datasets which holds the correct
     year for each.
 
