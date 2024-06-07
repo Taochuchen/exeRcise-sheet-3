@@ -184,7 +184,33 @@ d)  Come up with a (research) question you want to answer with the data
     and briefly explain why you believe this is an interesting question
     within one sentence. It should be a question that can be answered
     with the dataset and using R.
+    
+    Question:
+    How has the average daily calorie supply per person changed globally over 
+    the past few decades？
+    
+    Why interesting:
+    This question is interesting because it helps us see if people are getting 
+    enough food over time.
+    
 e)  Use R to answer your chosen question.
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+calories_data <- read_csv("data/Daily supply of calories per person (OWID based on UN FAO & historical sources).csv")
+str(calories_data)
+calories_data <- calories_data %>%
+  select(Entity, Year, Calories = `Daily caloric supply (OWID based on UN FAO & historical sources)`)
+
+calories_data <- calories_data %>%
+  filter(!is.na(Calories))
+
+average_calories <- calories_data %>%
+  group_by(Year) %>%
+  summarise(avg_calories = mean(Calories, na.rm = TRUE))
+```
 f)  Create a meaningful plot / figure with the dataset. Make sure to
     provide a figure caption (via the chunk options / Rmarkdown) and
     correctly label the figure.
