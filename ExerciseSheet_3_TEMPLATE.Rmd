@@ -214,7 +214,15 @@ average_calories <- calories_data %>%
 f)  Create a meaningful plot / figure with the dataset. Make sure to
     provide a figure caption (via the chunk options / Rmarkdown) and
     correctly label the figure.
-
+```{r}
+ggplot(average_calories, aes(x = Year, y = avg_calories)) +
+  geom_line(color = "blue") +
+  labs(title = "Average Daily Calories per Capita (1960 - Present)",
+       x = "Year",
+       y = "Daily Calories per Capita",
+       caption = "Data source: Our World in Data") +
+  theme_minimal()
+```
 ## Final Note
 
 Make sure to push all your commits and changes to GitHub before
